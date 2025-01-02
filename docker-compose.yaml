@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/pokemon_tcg
+      SPRING_DATASOURCE_USERNAME: pokemon_user
+      SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      - database
+
+  database:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: pokemon_user
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: pokemon_tcg
+    ports:
+      - "5432:5432"
