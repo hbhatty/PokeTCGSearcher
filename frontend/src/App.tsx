@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import SearchBar from './components/Searchbar/SearchBar'
+import CardList from './components/CardList/CardList';
 import { pokemonCardSearch } from "./services/api";
 
 interface Card {
@@ -8,7 +9,6 @@ interface Card {
   name: string;
   imageUrl: string;
 }
-
 
 const App = () => {  
 
@@ -29,6 +29,7 @@ const App = () => {
         <h1 className="text-center text-3xl font-bold ">Pokémon TCG Finder</h1>
       </header>
     <SearchBar onSearch={handleSearch}/>
+    <CardList cards={cards} />
     </div>
   )
 }
