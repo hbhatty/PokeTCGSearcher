@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Card {
   id: string;
   name: string;
