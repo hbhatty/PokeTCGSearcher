@@ -6,29 +6,29 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
   
-    const handleRegister = async() => {
-        try {
-            const response = await fetch("http://localhost:8080/api/auth/register", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ username, password }),
-            });
+    // const handleRegister = async() => {
+    //     try {
+    //         const response = await fetch("http://localhost:8080/api/auth/register", {
+    //           method: "POST",
+    //           headers: { "Content-Type": "application/json" },
+    //           body: JSON.stringify({ username, password }),
+    //         });
       
-            if (!response.ok) {
-              const errorText = await response.text();
-              throw new Error(errorText || "Registration failed");
-            }
+    //         if (!response.ok) {
+    //           const errorText = await response.text();
+    //           throw new Error(errorText || "Registration failed");
+    //         }
       
-            setMessage("User registered successfully! You can now log in.");
-          } catch (error: any) {
-            setMessage(`Error: ${error.message}`);
-          }
-    }
+    //         setMessage("User registered successfully! You can now log in.");
+    //       } catch (error: any) {
+    //         setMessage(`Error: ${error.message}`);
+    //       }
+    // }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
           <form
-            onSubmit={handleRegister}
+            // onSubmit={handleRegister}
             className="bg-white p-6 rounded shadow-md w-full max-w-sm"
           >
              {message && (
