@@ -1,5 +1,6 @@
 services:
   backend:
+    container_name: backend_tcg
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -11,6 +12,31 @@ services:
       SPRING_DATASOURCE_PASSWORD: 1234
     depends_on:
       - database
+
+  database:
+    image: postgres:17
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: pokemon_user
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: pokemon_tcg
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 8001
+    ports: 
+      - "8001:8001"
+    depends_on: 
+      - database
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
     
   frontend:
     build:
@@ -20,13 +46,6 @@ services:
       - "3000:80" # Map the frontend to port 3000 on the host
     depends_on:
       - backend
-    
-  database:
-    image: postgres:15
-    container_name: postgres_db
-    environment:
-      POSTGRES_USER: pokemon_user
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: pokemon_tcg
-    ports:
-      - "5432:5432"
+volumes:
+  postgres-data:
+  pgadmin-data:

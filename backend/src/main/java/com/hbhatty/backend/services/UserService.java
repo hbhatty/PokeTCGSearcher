@@ -3,11 +3,15 @@ package com.hbhatty.backend.services;
 
 import com.hbhatty.backend.models.Users;
 import com.hbhatty.backend.repositories.UserRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
