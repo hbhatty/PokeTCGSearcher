@@ -3,6 +3,9 @@ package com.hbhatty.backend.controllers;
 
 import com.hbhatty.backend.models.Users;
 import com.hbhatty.backend.services.UserService;
+
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +24,22 @@ public class AuthController {
     public ResponseEntity<String> registerUser(@RequestBody Users user) {
         try {
             userService.registerUser(user.getEmail(), user.getPassword());
-            return ResponseEntity.ok("User registered successfully!");
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "User registered successfully!");
+            return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
-            if (user.getEmail() == null || user.getPassword() == null || user.getEmail() == "" || user.getPassword() == "") {
-                throw new IllegalArgumentException("Password/email are missing/empty!");
-            }
-            return ResponseEntity.badRequest().body(e.getMessage());
+            Map<String, String> errResponse = new HashMap<>();
+            errResponse.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(errResponse);
         }
+        // try {
+        //     userService.registerUser(user.getEmail(), user.getPassword());
+        //     return ResponseEntity.ok("User registered successfully!");
+        // } catch (IllegalArgumentException e) {
+        //     if (user.getEmail() == null || user.getPassword() == null || user.getEmail() == "" || user.getPassword() == "") {
+        //         throw new IllegalArgumentException("Password/email are missing/empty!");
+        //     }
+        //     return ResponseEntity.badRequest().body(e.getMessage());
+        // }
     }
 }
