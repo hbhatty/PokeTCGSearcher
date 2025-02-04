@@ -15,7 +15,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center space-x-4">
+    <form onSubmit={handleSubmit} className="flex items-center space-x-4 mt-4">
       <input
         type="text"
         placeholder="Search for a pokemon card!"

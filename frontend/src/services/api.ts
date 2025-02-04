@@ -15,7 +15,7 @@ export const pokemonCardSearch = async (query: string) => {
   const res = await response.json();
   // Access data array from response
   const dataArray = res.data;
-  // console.log(dataArray[0].images.small)
+  
 
   //Map the array of cards to return as an object
   return dataArray.map((card: any) => ({

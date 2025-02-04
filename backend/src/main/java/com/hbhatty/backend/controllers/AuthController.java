@@ -21,7 +21,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody Users user) {
+    public ResponseEntity<Map<String, String>> registerUser(@RequestBody Users user) {
         try {
             userService.registerUser(user.getEmail(), user.getPassword());
             Map<String, String> response = new HashMap<>();

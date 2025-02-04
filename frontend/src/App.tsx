@@ -13,8 +13,12 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route
           path="/"
-          element={isLoggedIn() ? <SearchPage /> : <Navigate to="/login" />}
+          element={<SearchPage />}
         />
+        {/* <Route
+          path="/"
+          element={isLoggedIn() ? <SearchPage /> : <Navigate to="/login" />}
+        /> */}
       </Routes>
     </Router>
   );
